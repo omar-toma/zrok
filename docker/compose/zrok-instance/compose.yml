@@ -58,6 +58,7 @@ services:
     user: root
     environment:
       HOME: /home/ziggy
+    restart: no
     volumes:
       # store the quickstart state in a named volume "ziti_home" or store the quickstart state on the Docker host in a
       # directory, ZITI_HOME 
