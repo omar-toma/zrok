@@ -30,9 +30,6 @@ services:
       # store the quickstart state in a named volume "ziti_home" or store the quickstart state on the Docker host in a
       # directory, ZITI_HOME 
       - ${ZITI_HOME:-ziti_home}:/home/ziggy
-    ports:
-      - ${ZITI_INTERFACE:-0.0.0.0}:${ZITI_CTRL_ADVERTISED_PORT:-80}:${ZITI_CTRL_ADVERTISED_PORT:-80}
-      - ${ZITI_INTERFACE:-0.0.0.0}:${ZITI_ROUTER_PORT:-3022}:${ZITI_ROUTER_PORT:-3022}
     expose:
       - ${ZITI_CTRL_ADVERTISED_PORT:-80}
       - ${ZITI_ROUTER_PORT:-3022}
@@ -112,8 +109,6 @@ services:
     restart: unless-stopped
     expose:
       - ${ZROK_CTRL_PORT:-18080}  # (not published)
-    ports:
-      - ${ZROK_INSECURE_INTERFACE:-127.0.0.1}:${ZROK_CTRL_PORT:-18080}:${ZROK_CTRL_PORT:-18080}
     environment:
       ZROK_USER_PWD: ${ZROK_USER_PWD} # admin account password     (initial user account)
       ZROK_USER_EMAIL: ${ZROK_USER_EMAIL}  # login email address (initial user account)
@@ -150,9 +145,6 @@ services:
     expose:
       - ${ZROK_FRONTEND_PORT:-8080}  # (not published)
       - ${ZROK_OAUTH_PORT:-8081}     # (not published)
-    ports:
-      - ${ZROK_INSECURE_INTERFACE:-127.0.0.1}:${ZROK_FRONTEND_PORT:-8080}:${ZROK_FRONTEND_PORT:-8080}
-      - ${ZROK_INSECURE_INTERFACE:-127.0.0.1}:${ZROK_OAUTH_PORT:-8081}:${ZROK_OAUTH_PORT:-8081}
     environment:
       HOME: /var/lib/zrok-frontend
       ZROK_DNS_ZONE: ${ZROK_DNS_ZONE}  # e.g., "example.com" or "127.0.0.1.sslip.io"
