@@ -65,12 +65,14 @@ services:
   ziti-quickstart-check:
     image: busybox
     command: echo "Ziti is cooking"
+    restart: no
     depends_on:
       ziti-quickstart:
         condition: service_healthy
 
   zrok-permissions:
     image: busybox
+    restart: no
     command:
       - /bin/sh
       - -euxc
